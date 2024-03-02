@@ -5,17 +5,17 @@ class Menu extends Phaser.Scene {
       })
     }
     preload() {
-      this.load.image("background", "assets/background.png") // Fundo da cena do Main Menu
-      this.load.image("inteliLogo", "assets/logointeli.png") // Fundo da cena do Main Menu
+      this.load.image("background", "assets/background.avif") // Fundo da cena do Main Menu
+      this.load.image("inteliLogo", "assets/logo-inteli_branco.png") // Logo inteli
       this.load.image("botaoJogar", "assets/button.png") // Imagem para botaoJogar
   
     }
   
     create() {
       // Carrega a cena Main Menu
-      this.mainMenu = this.add.image(630, 365, "background").setScale(2.1)
-      this.logoInteli = this.add.image(1200, 690, "inteliLogo").setScale(1)
-      this.botaoJogar = this.add.image(900, 575, "botaoJogar").setInteractive().setScale(2)
+      this.mainMenu = this.add.image(gameDimensions.width/2, gameDimensions.height/2, "background").setScale(1.6)
+      this.logoInteli = this.add.image(1050, 530, "inteliLogo").setScale(0.5)
+      this.botaoJogar = this.add.image(gameDimensions.width/2, gameDimensions.height/1.5, "botaoJogar").setInteractive().setScale(0.156)
 
   
       // Ajuste visual da imagem do mouse para fornecer feedback que o botão jogar é interativo
@@ -32,8 +32,7 @@ class Menu extends Phaser.Scene {
         // Evento de click do mouse
         this.scene.start("scene1")
         this.scene.stop('menu')
-        this.input.setDefaultCursor("default") // Retorno do cursor do mouse para setinha
-        this.openFullScreen()
+        this.input.setDefaultCursor("default") // Retorno do cursor do mouse para setinha (padrão)
       })
     }
   
