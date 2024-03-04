@@ -14,6 +14,7 @@ class Scene1 extends Phaser.Scene {
   preload() {
     // Carregamento de imagens e spritesheets necessários
     this.load.image("background1", "assets/m_merged.png")  // Carrega a imagem de fundo
+    this.load.image("button", "button.png")  // Carrega a imagem da platafotma
     this.load.image("logCollect", "assets/logCollect.png")  // Carrega a imagem do tronco coletável
     this.load.image("logo", "assets/logo-inteli_branco.png")  // Carrega a imagem do logo
     this.load.image("logHurt", "assets/logHurt.png")  // Carrega a imagem do tronco prejudicial
@@ -49,9 +50,9 @@ class Scene1 extends Phaser.Scene {
     this.coin.anims.play("animar", true)  // Inicia a animação da moeda
 
     // Configuração e animação do personagem
-    this.personagem = this.physics.add.sprite(150, 510, "personagem").setScale(2.1)  // Adiciona o personagem
+    this.personagem = this.physics.add.sprite(150, 510, "personagem").setScale(2.4)  // Adiciona o personagem
     this.personagem.setCollideWorldBounds(true)  // Define colisão com os limites do mundo
-    this.personagem.setSize(20, 60, true)  // Define o tamanho do corpo para colisão
+    this.personagem.setSize(10, 40, true)  // Define o tamanho do corpo para colisão
     this.anims.create({
       key: "running",
       frames: this.anims.generateFrameNumbers("personagem", { start: 0, end: 3 }),
@@ -64,7 +65,7 @@ class Scene1 extends Phaser.Scene {
     this.logCollect = this.physics.add.sprite(700, 540, "logCollect").setScale(0.4)  // Adiciona o tronco coletável
     this.logCollect.setCollideWorldBounds(true)  // Define colisão com os limites do mundo
     this.logCollect.setVelocityX(this.velocidadeObjetos)  // Define a velocidade do tronco coletável
-    this.logCollect.body.setSize(120, 150, true)  // Define o tamanho do corpo para colisão
+    this.logCollect.body.setSize(180, 150, true)  // Define o tamanho do corpo para colisão
 
     // Colisão entre personagem e tronco coletável
     this.physics.add.overlap(this.personagem, this.logCollect, () => {
@@ -97,9 +98,9 @@ class Scene1 extends Phaser.Scene {
     })
 
     // Configuração do logo
-    this.logo = this.physics.add.sprite(45, 540, "logo").setScale(0.3)  // Adiciona o logo
+    this.logo = this.physics.add.sprite(50, 540, "logo").setScale(0.3)  // Adiciona o logo
     this.logo.setCollideWorldBounds(true)  // Define colisão com os limites do mundo
-    this.logo.body.setSize(410, 160, true)  // Define o tamanho do corpo para colisão
+    this.logo.body.setSize(50, 200, true)  // Define o tamanho do corpo para colisão
 
     // Configuração de tecla de espaço
     this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)  // Adiciona o input da tecla de espaço
@@ -123,6 +124,13 @@ class Scene1 extends Phaser.Scene {
       this.coin.setPosition(this.positionCoinX, 540)  // Define a nova posição da moeda
       this.coin.setVisible(true)  // Torna a moeda visível novamente
     })
+    this.plataform = this.physics.add.sprite(100, 580, "button")  // Adiciona plataforma para o personagem
+    this.plataform.setVisible(false)
+    this.plataform.body.setSize(100, 25, true)  // Define o tamanho do corpo para colisão
+    this.plataform.setCollideWorldBounds(true)
+    this.physics.add.collider(this.plataform, this.personagem)
+
+    
   }
 
   // Função de atualização da cena
@@ -137,12 +145,12 @@ class Scene1 extends Phaser.Scene {
     if (this.mainMenu.x <= -2001.89) {
       this.mainMenu.x = this.mainMenu.x + 2001.89  // Reposiciona o fundo
       this.volta -= -0.07  // Atualiza a volta, que irá aumentar a velocidade do jogo progressivamente
-      this.velocidadeObjetos -= +1000 * this.volta  // Atualiza a velocidade dos objetos
+      this.velocidadeObjetos -= +(100000 * this.volta)  // Atualiza a velocidade dos objetos
     }
 
     // Verifica se a tecla de espaço está pressionada e se o personagem está no chão
     if (this.space.isDown && this.personagem.body.onFloor()) {
-      this.personagem.setVelocityY(-600)  // Aplica uma velocidade vertical para simular o pulo
+      this.personagem.setVelocityY(-900)  // Aplica uma velocidade vertical para simular o pulo
     }
   }
 }

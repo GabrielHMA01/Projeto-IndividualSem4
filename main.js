@@ -14,7 +14,7 @@ const config = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 1400 },// Define aceleração da gravidade
+      gravity: { y: 2200 },// Define aceleração da gravidade
       debug: false, // Desativa ou ativa o debug
     },
   },
