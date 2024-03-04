@@ -42,10 +42,10 @@ class Scene1 extends Phaser.Scene {
     this.coin.setVelocityX(this.velocidadeObjetos)  // Define a velocidade da moeda
     this.coin.body.setSize(120, 310, true)  // Define o tamanho do corpo para colisão
     this.anims.create({
-      key: "animar",
-      frames: this.anims.generateFrameNumbers("coin", { start: 0, end: 5 }),
-      frameRate: 6,
-      repeat: -1,
+      key: "animar", // Define a chave para "chamar" a animação
+      frames: this.anims.generateFrameNumbers("coin", { start: 0, end: 5 }),// Delimita a quantidade de frames do spritesheet
+      frameRate: 6,// Atribui a taxa de quadros por ciclo
+      repeat: -1, // Coloca as repetições como infinitas
     })
     this.coin.anims.play("animar", true)  // Inicia a animação da moeda
 
@@ -54,10 +54,10 @@ class Scene1 extends Phaser.Scene {
     this.personagem.setCollideWorldBounds(true)  // Define colisão com os limites do mundo
     this.personagem.setSize(10, 40, true)  // Define o tamanho do corpo para colisão
     this.anims.create({
-      key: "running",
-      frames: this.anims.generateFrameNumbers("personagem", { start: 0, end: 3 }),
-      frameRate: 7,
-      repeat: -1,
+      key: "running", // Define a chave para "chamar" a animação
+      frames: this.anims.generateFrameNumbers("personagem", { start: 0, end: 3 }), // Delimita a quantidade de frames do spritesheet
+      frameRate: 7, // Atribui a taxa de quadros por ciclo
+      repeat: -1, // Coloca as repetições como infinitas
     })
     this.personagem.anims.play("running", true)  // Inicia a animação do personagem
 
@@ -125,10 +125,10 @@ class Scene1 extends Phaser.Scene {
       this.coin.setVisible(true)  // Torna a moeda visível novamente
     })
     this.plataform = this.physics.add.sprite(100, 580, "button")  // Adiciona plataforma para o personagem
-    this.plataform.setVisible(false)
+    this.plataform.setVisible(false) // Deixa a imagem da plataforma invisível
     this.plataform.body.setSize(100, 25, true)  // Define o tamanho do corpo para colisão
-    this.plataform.setCollideWorldBounds(true)
-    this.physics.add.collider(this.plataform, this.personagem)
+    this.plataform.setCollideWorldBounds(true) // Seta colisão entre as bordas do mundo e a plataforma
+    this.physics.add.collider(this.plataform, this.personagem) // Adiciona colisão entre o personagem e a plataforma
 
     
   }
@@ -138,14 +138,13 @@ class Scene1 extends Phaser.Scene {
     // Deslocamento do fundo
     if (this.mainMenu.width < 3000) {
       this.mainMenu.x -= 6 - this.volta  // Desloca o fundo
-      console.log(`Você está na volta ${this.volta / 0.07}`)  // Exibe em qual volta o jogador está no console
+      console.log(`Você está na volta ${this.volta / 0.1}`)  // Exibe em qual volta o jogador está no console
     }
 
     // Reposicionamento do fundo
     if (this.mainMenu.x <= -2001.89) {
       this.mainMenu.x = this.mainMenu.x + 2001.89  // Reposiciona o fundo
-      this.volta -= -0.07  // Atualiza a volta, que irá aumentar a velocidade do jogo progressivamente
-      this.velocidadeObjetos -= +(100000 * this.volta)  // Atualiza a velocidade dos objetos
+      this.volta -= -0.1  // Atualiza a volta, que irá aumentar a velocidade do jogo progressivamente
     }
 
     // Verifica se a tecla de espaço está pressionada e se o personagem está no chão
