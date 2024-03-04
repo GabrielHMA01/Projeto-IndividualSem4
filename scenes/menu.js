@@ -1,3 +1,4 @@
+// Definição da classe Menu, que estende (herda) Phaser.Scene
 class Menu extends Phaser.Scene {
     constructor() {
       super({
@@ -5,6 +6,7 @@ class Menu extends Phaser.Scene {
       })
     }
     preload() {
+      // Carregamento de imagens e spritesheets necessários
       this.load.image("background", "assets/background.avif") // Fundo da cena do Main Menu
       this.load.image("inteliLogo", "assets/logo-inteli_branco.png") // Logo inteli
       this.load.image("botaoJogar", "assets/button.png") // Imagem para botaoJogar
@@ -12,7 +14,7 @@ class Menu extends Phaser.Scene {
     }
   
     create() {
-      // Carrega a cena Main Menu
+      // Adiciona todos os elementos pré carregados
       this.mainMenu = this.add.image(gameDimensions.width/2, gameDimensions.height/2, "background").setScale(1.6)
       this.logoInteli = this.add.image(1050, 530, "inteliLogo").setScale(0.5)
       this.botaoJogar = this.add.image(gameDimensions.width/2, gameDimensions.height/1.5, "botaoJogar").setInteractive().setScale(0.156)
@@ -30,8 +32,8 @@ class Menu extends Phaser.Scene {
   
       this.botaoJogar.on("pointerdown", () => {
         // Evento de click do mouse
-        this.scene.start("scene1")
-        this.scene.stop('menu')
+        this.scene.start("scene1")// Muda de cena
+        this.scene.stop('menu')// Para a cena que estava
         this.input.setDefaultCursor("default") // Retorno do cursor do mouse para setinha (padrão)
       })
     }

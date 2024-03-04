@@ -1,26 +1,39 @@
+<!-- Declaração do tipo de documento HTML -->
 <!DOCTYPE html>
+<!-- Início da tag HTML com atributo de linguagem definido como "en" (inglês) -->
 <html lang="en">
+
+    <!-- Cabeçalho da página -->
     <head>
+        <!-- Definição do conjunto de caracteres UTF-8 -->
         <meta charset="UTF-8">
+        <!-- Configuração da viewport para ajustar o layout em dispositivos móveis -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Título da página exibido na barra de título do navegador -->
         <title>LumberJack</title>
+        <!-- Estilo CSS embutido para remover margens e preenchimentos padrão -->
         <style>
             * {
                 margin: 0;
                 padding: 0;
-    
             }
+            /* Definição de largura e altura como 100% para a tag html e body */
             html, body{
                 width: 100%;
                 height: 100%;
             }
         </style>
+        <!-- Inclusão do script Phaser.js -->
         <script src="phaser.js"></script>
     </head>
 
+    <!-- Corpo da página -->
     <body>
+        <!-- Inclusão do script da cena de menu -->
         <script src="scenes/menu.js"></script>
+        <!-- Inclusão do script da cena 1 -->
         <script src="scenes/scene1.js"></script>
+        <!-- Inclusão do script principal -->
         <script src="main.js"></script>        
     </body>
 </html>
